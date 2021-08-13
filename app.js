@@ -4,8 +4,15 @@ const app = express();
 const { addPage, editPage, main, userList, userPages, wikiPage } = require('./views')
 const path = require('path')
 const { db, User, Page } = require('./models');
+const {wikiRouter} = require('./routes/wiki');
+const {userRouter} = require('./routes/users');
+
 
 morgan('dev')
+
+app.use('/wiki', wikiRouter);
+
+
 
 db.authenticate()
   .then(() => {
@@ -14,7 +21,8 @@ db.authenticate()
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.get('/', (req, res)=>{
-    res.send(main());
+    // res.send(main());
+    res.redirect('/wiki');
 })
 
 

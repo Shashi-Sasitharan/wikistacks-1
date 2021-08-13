@@ -23,7 +23,7 @@ const Page = db.define('page', {
       },
     status:{
         type: Sequelize.ENUM('open', 'closed'),
-            defaultValue: 'closed'
+            defaultValue: 'open'
       }
 })
 
